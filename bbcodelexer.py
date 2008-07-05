@@ -10,16 +10,8 @@ tags = (
     'QUOTE_TAG_CL','CODE_TAG_CL','SIZE_TAG_CL','EMAIL_TAG_CL', 'BASIC_TAG_CL'
 )
 
-keywords = (
-    'IF','THEN','ELSEIF','END','WHILE',
-    'WEND','FOR','NEXT'
-)
-
-tokens = keywords + tags + (
-     'EQUALS','PLUS', 'TIMES','MINUS','DIVIDE','POWER',
-     'LPAREN','RPAREN','LT','LE','GT','GE','NE',
-     'COMMA','SEMI', 'INTEGER','FLOAT', 'STRING',
-     'ID','IDW','NEWLINE'
+tokens = tags + (
+    'IDW','NEWLINE'
 )
 
 t_ignore = ' \t'
@@ -43,25 +35,6 @@ def t_SIZE_TAG(t):
     t.value = re.search(r'(?<=\[size=)[\d]*(?=\])',t.value).group()
     return t
     
-#simple tokens
-t_EQUALS  = r'='
-t_PLUS    = r'\+'
-t_MINUS   = r'-'
-t_TIMES   = r'\*'
-t_POWER   = r'\^'
-t_DIVIDE  = r'/'
-t_LPAREN  = r'\('
-t_RPAREN  = r'\)'
-t_LT      = r'<'
-t_LE      = r'<='
-t_GT      = r'>'
-t_GE      = r'>='
-t_NE      = r'<>'
-t_COMMA   = r'\,'
-t_SEMI    = r';'
-t_FLOAT   = r'((\d*\.\d+)(E[\+-]?\d+)?|([1-9]\d*E[\+-]?\d+))'
-t_STRING  = r'\".*?\"'
-
 def t_IDW(t):
     r'[a-zA-Z0-9_:/.]+'
     
@@ -69,10 +42,10 @@ def t_IDW(t):
     res = pat.match(t.value)
     
     
-    if res and res.group() == t.value:
-        t.type = 'ID'     
-    if t.value in keywords:
-        t.type = t.value
+    #if res and res.group() == t.value:
+        #t.type = 'ID'     
+ #   if t.value in keywords:
+#        t.type = t.value
     return t
 
 def t_INTEGER(t):
