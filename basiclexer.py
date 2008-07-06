@@ -1,13 +1,13 @@
 from ply import *
 
 keywords = (
-    'IF','THEN','ELSEIF','END','WHILE',
-    'WEND','FOR','NEXT','PRINT'
+    'IF','THEN','WHILE',
+    'WEND','FOR','NEXT','PRINT','STEP','TO'
 )
 
 tokens = keywords + ('EQUALS','PLUS', 'TIMES','MINUS','DIVIDE','POWER',
      'LPAREN','RPAREN','LT','LE','GT','GE','NE',
-     'COMMA','SEMI', 'INTEGER','FLOAT', 'STRING',
+     'COMMA','SEMI', 'INTEGER', 'STRING',
      'ID','NEWLINE')
      
 t_ignore = ' \t'
@@ -34,7 +34,7 @@ t_NE      = r'<>'
 t_COMMA   = r'\,'
 t_SEMI    = r';'
 t_INTEGER = r'\d+'    
-t_FLOAT   = r'((\d*\.\d+)(E[\+-]?\d+)?|([1-9]\d*E[\+-]?\d+))'
+#t_FLOAT   = r'((\d*\.\d+)(E[\+-]?\d+)?|([1-9]\d*E[\+-]?\d+))'
 t_STRING  = r'\".*?\"'
 
 def t_NEWLINE(t):
